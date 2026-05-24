@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn English with Barbara</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<nav class="top-nav">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-globe">🌍</div>
+    <div class="nav-brand">
+      <strong>Learn English with Barbara</strong>
+      <span>English for International Success</span>
+    </div>
+  </a>
+  <div id="navActions">
+    <button class="btn-nav" onclick="showAuthTab('login')">Login</button>
+    <button class="btn-nav-cta" onclick="showAuthTab('register')">Get Started →</button>
+  </div>
+</nav>
+
+<!-- ── LOGIN PAGE ── -->
+<div class="page active" id="page-login">
+  <div class="auth-page">
+    <div class="auth-container">
+      <div class="auth-left">
+        <h2>Your English.<br>Your Success.</h2>
+        <p>Log in or create your free account to access your purchased learning packs and track your progress.</p>
+        <div class="auth-pack-list">
+          <div class="auth-pack-item"><span class="icon">📚</span><span class="name">Vocabulary for Work</span><span class="status owned">Owned</span></div>
+          <div class="auth-pack-item"><span class="icon">✏️</span><span class="name">Grammar Fix</span><span class="status owned">Owned</span></div>
+          <div class="auth-pack-item"><span class="icon">🎤</span><span class="name">IELTS Speaking</span><span class="status locked">🔒 Locked</span></div>
+          <div class="auth-pack-item"><span class="icon">💬</span><span class="name">Roleplay Conversation</span><span class="status locked">🔒 Locked</span></div>
+          <div class="auth-pack-item"><span class="icon">🔤</span><span class="name">Phrasal Verbs</span><span class="status locked">🔒 Locked</span></div>
+        </div>
+      </div>
+      <div class="auth-right">
+        <div class="auth-tabs">
+          <div class="auth-tab active" id="tab-login" onclick="showAuthTab('login')">Login</div>
+          <div class="auth-tab" id="tab-register" onclick="showAuthTab('register')">Create Account</div>
+        </div>
+        <div class="auth-form active" id="form-login">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" id="login-email" placeholder="your@email.com" value="demo@learnwithbarbara.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password <span class="forgot-link" onclick="showForgot()">Forgot password?</span></label>
+            <input class="form-input" type="password" id="login-password" placeholder="••••••••" value="demo1234">
+          </div>
+          <div class="error-msg" id="login-error"></div>
+          <button class="btn-auth" onclick="handleLogin()">Login to My Account →</button>
+          <div class="form-divider">or</div>
+          <button class="btn-demo" onclick="loginDemo()">⚡ Try Demo Account (No login needed)</button>
+          <p style="font-size:12px;color:var(--grey);text-align:center;margin-top:12px;">Demo: Vocabulary + Grammar packs included</p>
+        </div>
+        <div class="auth-form" id="form-register">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" id="reg-fname" placeholder="First name"></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" id="reg-lname" placeholder="Last name"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" id="reg-email" placeholder="your@email.com"></div>
+          <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="reg-password" placeholder="Min. 8 characters"></div>
+          <div class="form-group">
+            <label class="form-label">I am primarily...</label>
+            <select class="form-select" id="reg-goal">
+              <option value="">Select your goal...</option>
+              <option>A job seeker preparing for interviews</option>
+              <option>A professional improving workplace English</option>
+              <option>Preparing for IELTS / university application</option>
+              <option>Improving business communication skills</option>
+            </select>
+          </div>
+          <div class="error-msg" id="reg-error"></div>
+          <div class="success-msg" id="reg-success">✅ Account created! Logging you in...</div>
+          <button class="btn-auth" onclick="handleRegister()">Create My Account →</button>
+          <p style="font-size:12px;color:var(--grey);text-align:center;margin-top:10px;">By registering you agree to our Terms & Privacy Policy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CONFIRM EMAIL PAGE ── -->
+<div class="page" id="page-confirm">
+  <div class="confirm-email-page">
+    <div class="confirm-box">
+      <span class="envelope">📧</span>
+      <h2>Check Your Email!</h2>
+      <p>We've sent a confirmation link to <span class="email-highlight" id="confirm-email-display">your@email.com</span>.<br><br>Click the link in the email to activate your account.</p>
+      <button class="btn btn-navy" onclick="showPage('login')" style="margin:0 auto;">← Back to Login</button>
+      <p style="font-size:12px;color:var(--grey);margin-top:14px;">Didn't receive it? <span style="color:var(--gold);cursor:pointer;font-weight:700;" onclick="alert('Resend email — integration coming soon!')">Resend email</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ── DASHBOARD ── -->
+<div class="page" id="page-dashboard">
+  <div class="dashboard">
+    <div class="dash-hero">
+      <div class="dash-welcome">
+        <div>
+          <h1>Welcome back, <span id="dash-username">Sarah</span>! 👋</h1>
+          <p class="sub">Keep going — you're making great progress!</p>
+        </div>
+        <div class="dash-actions">
+          <button class="btn-nav" onclick="showDashTab('shop')">🛒 Get More Packs</button>
+          <button class="btn-nav" onclick="handleLogout()">Logout</button>
+        </div>
+      </div>
+      <div class="dash-stats">
+        <div class="dash-stat"><span class="num" id="stat-packs">2</span><span class="lbl">Packs Owned</span></div>
+        <div class="dash-stat"><span class="num" id="stat-lessons">4</span><span class="lbl">Lessons Done</span></div>
+        <div class="dash-stat"><span class="num" id="stat-streak">🔥 3</span><span class="lbl">Day Streak</span></div>
+        <div class="dash-stat"><span class="num" id="stat-score">72%</span><span class="lbl">Avg. Score</span></div>
+      </div>
+    </div>
+
+    <div class="dash-nav">
+      <div class="dash-nav-tab active" onclick="showDashTab('home')">🏠 Dashboard</div>
+      <div class="dash-nav-tab" onclick="showDashTab('packs')">📦 My Packs</div>
+      <div class="dash-nav-tab" onclick="showDashTab('shop')">🛒 Shop</div>
+      <div class="dash-nav-tab" onclick="showDashTab('profile')">👤 My Profile</div>
+      <div class="dash-nav-tab" onclick="showDashTab('purchases')">🧾 Purchases</div>
+    </div>
+
+    <div class="dash-body">
+
+      <!-- HOME -->
+      <div class="dash-sub-page active" id="dashtab-home">
+        <div style="margin-bottom:26px;">
+          <h2 class="dash-section-title">Continue Learning</h2>
+          <p class="dash-section-sub">Pick up where you left off.</p>
+          <div class="packs-grid" id="owned-packs-grid"></div>
+        </div>
+        <div style="margin-bottom:26px;">
+          <h2 class="dash-section-title">Recent Activity</h2>
+          <p class="dash-section-sub">Your latest lessons and scores.</p>
+          <div class="activity-list">
+            <div class="activity-item"><div class="activity-icon" style="background:var(--gold-pale);">📚</div><div style="flex:1;"><span class="activity-title">Vocabulary for Work — Lesson 1</span><span class="activity-sub">Flashcards · 2 hours ago</span></div><div class="activity-score">75%</div></div>
+            <div class="activity-item"><div class="activity-icon" style="background:#E8F5E9;">✏️</div><div style="flex:1;"><span class="activity-title">Grammar Fix — Fill in the Blanks</span><span class="activity-sub">IN/ON/AT · Yesterday</span></div><div class="activity-score">80%</div></div>
+            <div class="activity-item"><div class="activity-icon" style="background:var(--gold-pale);">📚</div><div style="flex:1;"><span class="activity-title">Vocabulary Quick Quiz</span><span class="activity-sub">4/4 correct · 2 days ago</span></div><div class="activity-score">100% 🏆</div></div>
+          </div>
+        </div>
+        <div>
+          <h2 class="dash-section-title">Your Achievements</h2>
+          <p class="dash-section-sub">Keep learning to unlock more badges.</p>
+          <div class="badges-row">
+            <div class="badge"><div class="badge-icon">🚀</div><div><span class="badge-title">First Lesson</span><span class="badge-sub">Completed!</span></div></div>
+            <div class="badge"><div class="badge-icon">📚</div><div><span class="badge-title">Word Master</span><span class="badge-sub">10 vocab words</span></div></div>
+            <div class="badge locked-badge"><div class="badge-icon">🎤</div><div><span class="badge-title">IELTS Ready</span><span class="badge-sub">Complete IELTS pack</span></div></div>
+            <div class="badge locked-badge"><div class="badge-icon">🏆</div><div><span class="badge-title">All Packs</span><span class="badge-sub">Own all 7 packs</span></div></div>
+            <div class="badge locked-badge"><div class="badge-icon">🔥</div><div><span class="badge-title">7-Day Streak</span><span class="badge-sub">Study 7 days running</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PACKS -->
+      <div class="dash-sub-page" id="dashtab-packs">
+        <h2 class="dash-section-title">My Learning Packs</h2>
+        <p class="dash-section-sub">All packs you own. Click to start or continue.</p>
+        <div class="packs-grid" id="all-packs-grid"></div>
+      </div>
+
+      <!-- SHOP -->
+      <div class="dash-sub-page" id="dashtab-shop">
+        <h2 class="dash-section-title">Get More Packs</h2>
+        <p class="dash-section-sub">Unlock more topics to boost your Business English.</p>
+        <div class="purchase-banner">
+          <div class="purchase-banner-left">
+            <h3>Get the <span>Full Bundle</span> — Best Value</h3>
+            <p>All 7 packs in one. Complete Business English from vocabulary to IELTS, roleplay, pronunciation, and weekly quizzes.</p>
+            <div class="bundle-price-tag">
+              <span class="old">£74.93</span><span class="new">£59.99</span><span class="save">Save £14.94</span>
+            </div>
+            <button class="btn btn-gold" onclick="openStripe('Full Bundle — All 7 Packs','59.99')">🛒 Buy Full Bundle →</button>
+          </div>
+        </div>
+        <div class="packs-grid" id="shop-packs-grid"></div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="dash-sub-page" id="dashtab-profile">
+        <div class="profile-section">
+          <div class="profile-header">
+            <div class="profile-avatar">👩🏽</div>
+            <div>
+              <span class="profile-name" id="profile-name">Sarah Johnson</span>
+              <span class="profile-email" id="profile-email">sarah@email.com</span>
+              <span class="member-since">⭐ Member since January 2025</span>
+            </div>
+            <button class="btn btn-outline" style="margin-left:auto;" onclick="saveProfile()">Save Changes</button>
+          </div>
+          <div class="profile-grid">
+            <div class="profile-field"><label>First Name</label><input type="text" id="pf-fname" value="Sarah"></div>
+            <div class="profile-field"><label>Last Name</label><input type="text" id="pf-lname" value="Johnson"></div>
+            <div class="profile-field"><label>Email Address</label><input type="email" id="pf-email" value="sarah@email.com"></div>
+            <div class="profile-field"><label>Country</label><input type="text" id="pf-country" value="United Kingdom"></div>
+            <div class="profile-field" style="grid-column:1/-1;"><label>Learning Goal</label><input type="text" id="pf-goal" value="Preparing for UK job interviews and improving professional communication"></div>
+          </div>
+          <div class="profile-actions">
+            <button class="btn btn-outline" onclick="alert('Change password — email integration coming soon!')">🔑 Change Password</button>
+            <button class="btn btn-red" onclick="confirmDeleteAccount()">🗑️ Delete Account</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PURCHASES -->
+      <div class="dash-sub-page" id="dashtab-purchases">
+        <h2 class="dash-section-title">Purchase History</h2>
+        <p class="dash-section-sub">All your payments and active licences.</p>
+        <div class="payment-history" id="purchase-list"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- STRIPE MODAL -->
+<div class="stripe-modal" id="stripeModal">
+  <div class="stripe-box">
+    <button class="stripe-close" onclick="closeStripe()">✕</button>
+    <h3 id="stripe-title">Complete Purchase</h3>
+    <span class="stripe-sub" id="stripe-desc">One-time payment · Instant access · Lifetime licence</span>
+    <div class="stripe-amount"><span class="amount" id="stripe-amount">£9.99</span><span class="type">One-time · No subscription</span></div>
+    <div id="stripe-form-view">
+      <div class="stripe-field"><label>Cardholder Name</label><input type="text" id="card-name" placeholder="Name on card"></div>
+      <div class="stripe-field"><label>Card Number</label><input type="text" id="card-num" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"></div>
+      <div class="stripe-card-row">
+        <div class="stripe-field"><label>Expiry</label><input type="text" id="card-exp" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)"></div>
+        <div class="stripe-field"><label>CVC</label><input type="text" id="card-cvc" placeholder="123" maxlength="3"></div>
+      </div>
+      <div class="stripe-secure">🔒 Secured by Stripe · 256-bit SSL encryption</div>
+      <button class="btn-pay" onclick="processPayment()">Pay <span id="pay-amount">£9.99</span> →</button>
+    </div>
+    <div class="payment-processing" id="payment-processing"><div class="spinner"></div><p style="color:var(--grey);font-size:14px;font-weight:700;">Processing securely...</p></div>
+    <div class="payment-success" id="payment-success">
+      <span class="success-check">✅</span>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:22px;margin-bottom:8px;">Payment Confirmed!</h3>
+      <p style="color:var(--grey);font-size:13px;margin-bottom:18px;">Your pack is unlocked. Start learning now!</p>
+      <button class="btn btn-gold" style="margin:0 auto;" onclick="afterPayment()">Start Learning Now →</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/stripe.js"></script>
+<script>initAuth();</script>
+</body>
+</html>

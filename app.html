@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn English with Barbara</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<nav class="top-nav">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-globe">🌍</div>
+    <div class="nav-brand">
+      <strong>Learn English with Barbara</strong>
+      <span>English for International Success</span>
+    </div>
+  </a>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a href="login.html" class="btn-nav">← Dashboard</a>
+    <a href="login.html" class="btn-nav-cta">👤 My Account</a>
+  </div>
+</nav>
+
+<div class="app-layout">
+  <aside class="sidebar">
+    <span class="sidebar-title">My Learning Packs</span>
+    <div id="sidebarNav"></div>
+    <hr class="sidebar-divider">
+    <div class="sidebar-overall">
+      <span class="label">Overall Progress</span>
+      <div class="sidebar-pct" id="sidebarOverallPct">0%</div>
+      <div style="color:rgba(255,255,255,0.4);font-size:11px;margin-top:2px;">Keep going! 💪</div>
+    </div>
+  </aside>
+  <main class="main-content" id="mainContent"></main>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/lessons.js"></script>
+<script>
+  renderSidebar();
+  loadPack('vocab');
+</script>
+</body>
+</html>
